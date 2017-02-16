@@ -1,86 +1,80 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="HandheldFriendly" content="true">
-    <title>DHAssist</title>
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="HandheldFriendly" content="true">
+        <title>DHAssist</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Bahiana|Coda" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Bahiana|Coda" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="jquery-3.1.1.min.js"></script>
-    <script>
-        $("#Level").change(function(){
-            correspondingID = $(this).find(":selected").val()
-            $(".style-sub-1").hide();
-            $("#" + correspondingID).show();
 
-        })
-    </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-</head>
+    </head>
 
 <body>
-<nav class="navbar navbar-default">
-    <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand" href="main.html">DHAssist</a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse navbar-menubuilder">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="main.html">Home</a>
-                    </li>
-                    <li><a href="/">Seating Plans</a>
-                    </li>
-                    <li><a href="page2.html">Lecture Timetables</a>
-                    </li>
-                    <li><a href="about.url">About</a>
-                    </li>
-                </ul>
+    <nav class="navbar navbar-default">
+        <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header"><a class="navbar-brand" href="main.html">DHAssist</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse navbar-menubuilder">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="main.html">Home</a>
+                        </li>
+                        <li><a href="/">Seating Plans</a>
+                        </li>
+                        <li><a href="page2.html">Lecture Timetables</a>
+                        </li>
+                        <li><a href="about.url">About</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<form action="submit.php" method="post">
-<label>Choose your level.</label><select id="level">
-    <option value="year1">Year 1</option>
-    <option value="year5">Year 5</option>
-</select><br>
+    <form action="submit.php" method="post">
+    <label>Choose your level.</label><select id="level">
+        <option value="year1">Year 1</option>
+        <option value="year5">Year 5</option>
+    </select><br>
 
-Subject/Period<br>
-<select id="subject">
-    <option value="y1assembly">Assembly(Y1 Only)</option>
-    <option value="y1y2assembly">Assembly(Y1 Y2 Comb.)</option>
-</select>
-    <input name="submitbutton" type="submit" value="submit" />
-</form>
+    Subject/Period<br>
+    <select id="subject">
+        <option value="y1assembly">Assembly(Y1 Only)</option>
+        <option value="y1y2assembly">Assembly(Y1 Y2 Comb.)</option>
+    </select>
+        <input name="submitbutton" type="submit" value="submit" />
+    </form>
 
-<script>$('#level').on('change', function(){
-    console.log($('#level').val());
-    $('#subject').html('');
-    if($('#level').val()=="year1"){
-        $('#subject').append('<option value="y1assembly">Assembly(Y1 Only)</option>');
-        $('#subject').append('<option value="y1y2assembly">Assembly(Y1 Y2 Comb.)</option>');
-    }else{
-        $('#subject').append('<option value="h2math">H2 Math</option>');
-        $('#subject').append('<option value="h1gp">H1 GP</option>');
-        $('#subject').append('<option value="y5assembly">Assembly(Y5 Only)</option>');
-        $('#subject').append('<option value="h2econs">H2 Econs</option>');
-    }
-});
-</script>
+    <script>$('#level').on('change', function(){
+        console.log($('#level').val());
+        $('#subject').html('');
+        if($('#level').val()=="year1"){
+            $('#subject').append('<option value="y1assembly">Assembly(Y1 Only)</option>');
+            $('#subject').append('<option value="y1y2assembly">Assembly(Y1 Y2 Comb.)</option>');
+        }
+        if($('#level').val()=="year5"){
+            $('#subject').append('<option value="h2math">H2 Math</option>');
+            $('#subject').append('<option value="h1gp">H1 GP</option>');
+            $('#subject').append('<option value="y5assembly">Assembly(Y5 Only)</option>');
+            $('#subject').append('<option value="h2econs">H2 Econs</option>');
+        }
+    });
+    </script>
 
 
 </body>
