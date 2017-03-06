@@ -11,14 +11,30 @@
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
+        <script src="app.js"></script>
 
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="css/styles.css">
         <link href="https://fonts.googleapis.com/css?family=Bahiana|Coda" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css?family=Coda" rel="stylesheet">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCI3hKITva2D5daVwTzu23N8bcdtrerwUw",
+                authDomain: "dhassist-25c06.firebaseapp.com",
+                databaseURL: "https://dhassist-25c06.firebaseio.com",
+                storageBucket: "dhassist-25c06.appspot.com",
+                messagingSenderId: "395136600662"
+            };
+            firebase.initializeApp(config);
+        </script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
 
     </head>
 
@@ -26,19 +42,19 @@
     <nav class="navbar navbar-default">
         <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
             <div class="container-fluid">
-                <div class="navbar-header"><a class="navbar-brand" href="main.html">DHAssist</a>
+                <div class="navbar-header"><a class="navbar-brand" href="index.html">DH<span style="color: #ff0000">Assist</span></a>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                     </button>
                 </div>
                 <div class="collapse navbar-collapse navbar-menubuilder">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="main.html">Home</a>
+                        <li><a href="index.html">Home</a>
                         </li>
                         <li><a href="page1.html">Seating Plans</a>
                         </li>
-                        <li><a href="/">Lecture Timetables</a>
+                        <li><a href="page2.html">Lecture Timetables</a>
                         </li>
-                        <li><a href="about.url">About</a>
+                        <li><a href="page3.html">About</a>
                         </li>
                     </ul>
                 </div>
@@ -46,14 +62,20 @@
         </div>
     </nav>
 
+    <div class="content">
     <h1>Lecture Timetables</h1>
-    <h3>Select the lecture location for more info.</h3>
-    <a href="#Auditorium" class="btn btn-info" role="button">Auditorium</a>
-    <a href="#LT1" class="btn btn-info" role="button">LT1</a></br></br></br></br></br></br></br></br></br></br>
-    <a name="Auditorium">Audi timetable</a>
-    <image src="dhsbackground1.jpg" style="width:100%; height:250px;"></image>
-    </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
-    <a name="LT1">LT1 Timetable</a>
-    <image src="dhsbackground1.jpg" style="width:100%; height:250px;"></image>
+    <h3>Select the lecture location for its schedule.</h3>
+    <input class="timebtn" type="button" value="Auditorium" onclick="pic1()"/>
+    <input class="timebtn" type="button" value="LT1" onclick="pic2()"/>
+    <input class="timebtn" type="button" value="LT2" onclick="pic3()"/>
+
+    <div id="ttimg">
+        <img src = "timetables/tt_audi.jpg" id = "ttaudi"/>
+        <img src = "timetables/tt_lt1.jpg" id = "ttlt1"/>
+        <img src = "timetables/tt_lt2.jpg" id = "ttlt2"/>
+    </div>
+    <h5 class="contact">For inquiries and feedback, contact the developer at goh.siauwee@dhs.sg.</h5>
+    </div>
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

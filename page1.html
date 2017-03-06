@@ -11,14 +11,29 @@
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
+        <script src="jquery-3.1.1.min.js"></script>
 
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="css/styles.css">
         <link href="https://fonts.googleapis.com/css?family=Bahiana|Coda" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css?family=Coda" rel="stylesheet">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- Firebase -->
+
+        <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCI3hKITva2D5daVwTzu23N8bcdtrerwUw",
+                authDomain: "dhassist-25c06.firebaseapp.com",
+                databaseURL: "https://dhassist-25c06.firebaseio.com",
+                storageBucket: "dhassist-25c06.appspot.com",
+                messagingSenderId: "395136600662"
+            };
+            firebase.initializeApp(config);
+        </script>
 
     </head>
 
@@ -26,56 +41,56 @@
     <nav class="navbar navbar-default">
         <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
             <div class="container-fluid">
-                <div class="navbar-header"><a class="navbar-brand" href="main.html">DHAssist</a>
+                <div class="navbar-header"><a class="navbar-brand" href="index.html">DH<span style="color: #ff0000">Assist</span></a>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                     </button>
                 </div>
                 <div class="collapse navbar-collapse navbar-menubuilder">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="main.html">Home</a>
+                        <li><a href="index.html">Home</a>
                         </li>
-                        <li><a href="/">Seating Plans</a>
+                        <li><a href="page1.html">Seating Plans</a>
                         </li>
                         <li><a href="page2.html">Lecture Timetables</a>
                         </li>
-                        <li><a href="about.url">About</a>
+                        <li><a href="page3.html">About</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
+    <div class="content">
+    <h1>Seating Plans</h1>
+    <h3>Enter your class and relevant subject.</h3>
 
-    <form action="submit.php" method="post">
-    <label>Choose your level.</label><select id="level">
-        <option value="year1">Year 1</option>
-        <option value="year5">Year 5</option>
-    </select><br>
+    <form name="subjectsubmit" onSubmit="return redirect()">
+        <label>Choose your level.</label><br>
+        <select id="level">
+            <option value="jh">Junior High</option>
+            <option value="year5">Year 5</option>
+            <option value="year6">Year 6</option>
+        </select><br>
 
-    Subject/Period<br>
-    <select id="subject">
-        <option value="y1assembly">Assembly(Y1 Only)</option>
-        <option value="y1y2assembly">Assembly(Y1 Y2 Comb.)</option>
-    </select>
-        <input name="submitbutton" type="submit" value="submit" />
+        <br><label>Choose Subject/Period</label><br>
+        <select id="subject">
+            <option value="blank"></option>
+            <option value="assembly_audiy3">Assembly(Y3 Audi)</option>
+            <option value="assembly_audiy4">Assembly(Y4 Audi)</option>
+            <option value="assembly_pacy3">Assembly(Y3 PAC)</option>
+            <option value="assembly_pacy4">Assembly(Y4 PAC)</option>
+        </select><br><br>
     </form>
+        <div id="spimg">
+            <img src="seatingplan/sp_audiy3.jpg" id="sp_audiy3"/>
+            <img src="seatingplan/sp_audiy4.jpg" id="sp_audiy4"/>
+            <img src="seatingplan/sp_pacy3.jpg" id="sp_pacy3"/>
+            <img src="seatingplan/sp_pacy4.jpg" id="sp_pacy4"/>
+            <img src="seatingplan/sp_pacy5y6.jpg" id="sp_pacy5y6"/>
+        </div>
+        <h5 class="contact">For inquiries and feedback, contact the developer at goh.siauwee@dhs.sg.</h5>
+    </div>
 
-    <script>$('#level').on('change', function(){
-        console.log($('#level').val());
-        $('#subject').html('');
-        if($('#level').val()=="year1"){
-            $('#subject').append('<option value="y1assembly">Assembly(Y1 Only)</option>');
-            $('#subject').append('<option value="y1y2assembly">Assembly(Y1 Y2 Comb.)</option>');
-        }
-        if($('#level').val()=="year5"){
-            $('#subject').append('<option value="h2math">H2 Math</option>');
-            $('#subject').append('<option value="h1gp">H1 GP</option>');
-            $('#subject').append('<option value="y5assembly">Assembly(Y5 Only)</option>');
-            $('#subject').append('<option value="h2econs">H2 Econs</option>');
-        }
-    });
-    </script>
-
-
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

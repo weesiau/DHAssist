@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="HandheldFriendly" content="true">
+		<title>DHAssist</title>
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+		<!-- Firebase -->
+
+		<script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+		<script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCI3hKITva2D5daVwTzu23N8bcdtrerwUw",
+                authDomain: "dhassist-25c06.firebaseapp.com",
+                databaseURL: "https://dhassist-25c06.firebaseio.com",
+                storageBucket: "dhassist-25c06.appspot.com",
+                messagingSenderId: "395136600662"
+            };
+            firebase.initializeApp(config);
+		</script>
+		<script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+		<script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-messaging.js"></script>
+		<script type="text/javascript">
+            /**
+             * Function called when clicking the Login/Logout button.
+             */
+            // [START buttoncallback]
+            function toggleSignIn() {
+                if (!firebase.auth().currentUser) {
+                    // [START createprovider]
+                    var provider = new firebase.auth.GoogleAuthProvider();
+                    // [END createprovider]
+                    // [START addscopes]
+                    provider.addScope('https://www.googleapis.com/auth/plus.login');
+                    // [END addscopes]
+                    // [START signin]
+                    firebase.auth().signInWithRedirect(provider);
+                    // [END signin]
+                } else {
+                    // [START signout]
+                    firebase.auth().signOut();
+                    // [END signout]
+                }
+                // [START_EXCLUDE]
+                document.getElementById('quickstart-sign-in').disabled = true;
+                // [END_EXCLUDE]
+            }
+            // [END buttoncallback]
+            /**
+             * initApp handles setting up UI event listeners and registering Firebase auth listeners:
+             *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
+             *    out, and that is where we update the UI.
+             *  - firebase.auth().getRedirectResult(): This promise completes when the user gets back from
+             *    the auth redirect flow. It is where you can get the OAuth access token from the IDP.
+             */
+            function initApp() {
+                // Result from Redirect auth flow.
+                // [START getidptoken]
+                firebase.auth().getRedirectResult().then(function(result) {
+                    if (result.credential) {
+                        // This gives you a Google Access Token. You can use it to access the Google API.
+                        var token = result.credential.accessToken;
+                        // [START_EXCLUDE]
+                        document.getElementById('quickstart-oauthtoken').textContent = token;
+                    } else {
+                        document.getElementById('quickstart-oauthtoken').textContent = 'null';
+                        // [END_EXCLUDE]
+                    }
+                    // The signed-in user info.
+                    var user = result.user;
+                }).catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    // [START_EXCLUDE]
+                    if (errorCode === 'auth/account-exists-with-different-credential') {
+                        alert('You have already signed up with a different auth provider for that email.');
+                        // If you are using multiple auth providers on your app you should handle linking
+                        // the user's accounts here.
+                    } else {
+                        console.error(error);
+                    }
+                    // [END_EXCLUDE]
+                });
+                // [END getidptoken]
+                // Listening for auth state changes.
+                // [START authstatelistener]
+                firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                        // User is signed in.
+                        var displayName = user.displayName;
+                        var email = user.email;
+                        var emailVerified = user.emailVerified;
+                        var photoURL = user.photoURL;
+                        var isAnonymous = user.isAnonymous;
+                        var uid = user.uid;
+                        var providerData = user.providerData;
+                        // [START_EXCLUDE]
+                        document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+                        document.getElementById('quickstart-sign-in').textContent = 'Sign out';
+                        document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
+                        // [END_EXCLUDE]
+                    } else {
+                        // User is signed out.
+                        // [START_EXCLUDE]
+                        document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+                        document.getElementById('quickstart-sign-in').textContent = 'Sign in with Google';
+                        document.getElementById('quickstart-account-details').textContent = 'null';
+                        document.getElementById('quickstart-oauthtoken').textContent = 'null';
+                        // [END_EXCLUDE]
+                    }
+                    // [START_EXCLUDE]
+                    document.getElementById('quickstart-sign-in').disabled = false;
+                    // [END_EXCLUDE]
+                });
+                // [END authstatelistener]
+                document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
+            }
+            window.onload = function() {
+                initApp();
+            };
+		</script>
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<script src="app.js"></script>
+
+		<link rel="stylesheet" href="css/styles.css">
+		<link href="https://fonts.googleapis.com/css?family=Bahiana|Coda" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Coda" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	</head>
+	
+	<body>
+		<!--[if lte IE 9]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+		<![endif]-->
+		<nav class="navbar navbar-default">
+			<div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header"><a class="navbar-brand" href="index.html">DH<span style="color: #ff0000">Assist</span></a>
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse" id="navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="index.html">Home</a>
+							</li>
+							<li><a href="page1.html">Seating Plans</a>
+							</li>
+							<li><a href="page2.html">Lecture Timetables</a>
+							</li>
+							<li><a href="page3.html">About</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="content">
+		<h1>Welcome to DHAssist!</h1>
+		<h4>A simple yet straightforward app that helps make your school life <strong>easier</strong> and that much more <strong>enjoyable</strong>.</h4>
+		<h5 class="contact">For inquiries and feedback, contact the developer at goh.siauwee@dhs.sg.</h5>
+		</div>
+	</body>
+</html>

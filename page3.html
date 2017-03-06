@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="HandheldFriendly" content="true">
+    <title>DHAssist</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="js/app.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Bahiana|Coda" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Coda" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCI3hKITva2D5daVwTzu23N8bcdtrerwUw",
+            authDomain: "dhassist-25c06.firebaseapp.com",
+            databaseURL: "https://dhassist-25c06.firebaseio.com",
+            storageBucket: "dhassist-25c06.appspot.com",
+            messagingSenderId: "395136600662"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+    <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header"><a class="navbar-brand" href="index.html">DH<span style="color: #ff0000">Assist</span></a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-menubuilder">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                    <li><a href="page1.html">Seating Plans</a>
+                    </li>
+                    <li><a href="page2.html">Lecture Timetables</a>
+                    </li>
+                    <li><a href="page3.html">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+    <div class="content">
+        <h1>About DHAssist</h1>
+        <p class="about">Nobody likes to be uncertain about where and when lectures are occurring, and time used to find your class' seats is precious time wasted.</p>
+        <br><p class="about">Even more so, nobody wants to be nagged at by lecturers for bring slow or late.</p>
+        <br><h4>Developed by Goh Siau Wee of 5C33, this companion app aims to get students to settle down at lecture locations and <strong>get down</strong> with the lecture quicker.<input class="eebutton" type="button" onClick="pogchamp()"/></h4>
+        <img src="impt/mlgnore.jpg" id="danker"/>
+        <h5 class="contact">For inquiries and feedback, contact the developer at goh.siauwee@dhs.sg.</h5>
+    </div>
+
+<script>
+    function pogchamp() {
+        var img = document.getElementById('danker');
+        img.style.visibility = 'visible';
+    }
+</script>
+
+</body>

@@ -1,0 +1,6 @@
+<a href="#Auditorium" class="btn btn-info" role="button">Auditorium</a>
+    <a href="#LT1" class="btn btn-info" role="button">LT1</a></br></br></br></br></br></br></br></br></br></br>
+    <a name="Auditorium">Audi timetable</a>
+    <image src="dhsbackground1.jpg" class="timetable" style="width:100%; height:250px;"></image>
+    </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+    <a name="LT1">LT1 Timetable</a>
