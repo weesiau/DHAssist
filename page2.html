@@ -11,8 +11,6 @@
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
-        <script src="app.js"></script>
-
         <link rel="stylesheet" href="css/styles.css">
         <link href="https://fonts.googleapis.com/css?family=Bahiana|Coda" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
@@ -54,6 +52,8 @@
                         </li>
                         <li><a href="page2.html">Lecture Timetables</a>
                         </li>
+                        <li><a href="page4.html">Feedback</a>
+                        </li>
                         <li><a href="page3.html">About</a>
                         </li>
                     </ul>
@@ -69,13 +69,90 @@
     <input class="timebtn" type="button" value="LT1" onclick="pic2()"/>
     <input class="timebtn" type="button" value="LT2" onclick="pic3()"/>
 
+    <div id="myModal" class="modal">
+        <span class="close">×</span>
+        <img class="modal-content" id="img01">
+    </div>
+
     <div id="ttimg">
         <img src = "timetables/tt_audi.jpg" id = "ttaudi"/>
         <img src = "timetables/tt_lt1.jpg" id = "ttlt1"/>
         <img src = "timetables/tt_lt2.jpg" id = "ttlt2"/>
     </div>
+
     <h5 class="contact">For inquiries and feedback, contact the developer at goh.siauwee@dhs.sg.</h5>
     </div>
-    <script type="text/javascript" src="js/app.js"></script>
+    <script src="js/page2.js"></script>
+    <!-- firebase and main js -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCI3hKITva2D5daVwTzu23N8bcdtrerwUw",
+            authDomain: "dhassist-25c06.firebaseapp.com",
+            databaseURL: "https://dhassist-25c06.firebaseio.com",
+            storageBucket: "dhassist-25c06.appspot.com",
+            messagingSenderId: "395136600662"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script type="text/javascript">
+        var user = firebase.auth().currentUser;
+        var name, email, photoUrl, uid, emailVerified;
+        var provider = new firebase.auth.GoogleAuthProvider();
+        function toggleSignIn() {
+            if(user) {
+                // user is signed in, sign out
+                firebase.auth().signOut().then(function() {
+                    // Sign-out successful.
+                    console.log("Sign out successful");
+                }, function(error) {
+                    // An error happened.
+                    console.log("Sign out error");
+                });
+            } else {
+                firebase.auth().signInWithRedirect(provider);
+            }
+        }
+        $(document).ready(function () {
+            firebase.auth().onAuthStateChanged(function(User) {
+                if (User) {
+                    // User is signed in.
+                    $("#auth").text("Sign Out");
+                    user = firebase.auth().currentUser;
+                    user.providerData.forEach(function (profile) {
+                        console.log("Sign-in provider: "+profile.providerId);
+                        console.log("  Provider-specific UID: "+profile.uid);
+                        console.log("  Name: "+profile.displayName);
+                        console.log("  Email: "+profile.email);
+                        console.log("  Photo URL: "+profile.photoURL);
+                    });
+                } else {
+                    // No user is signed in.
+                    $("#auth").text("Sign in");
+                }
+            });
+            if(user){
+                $("#auth").text("Sign Out");
+            } else {
+                $("#auth").text("Sign in");
+                $("#auth").click(function () {
+                    toggleSignIn();
+                });
+            }
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-93237904-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </body>
 </html>
